@@ -43,7 +43,10 @@ def sum_view(request):
     """Receives two numbers and returns a JSON {"sum": value}."""
     a = float(request.GET.get('n1', 0))
     b = float(request.GET.get('n2', 0))
-    return JsonResponse({'sum': a + b})
+    total = a + b
+    if total.is_integer():
+        total = int(total)
+    return JsonResponse({"sum": total})
 
 # ---------------------------------------------------------------------------
 # HW4  — user creation
