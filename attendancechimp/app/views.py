@@ -37,16 +37,16 @@ def index(request):
 def time_view(request):
     """Return the current Chicago time as HH:MM."""
     time = datetime.now(zoneinfo.ZoneInfo("America/Chicago"))
-    return JsonResponse({'time': time.isoformat()})
+    return HttpResponse(time.strftime("%H:%M"))
 
 def sum_view(request):
-    """Receives two numbers and returns a JSON {"sum": value}."""
+    """Receives two numbers and returns sum."""
     a = float(request.GET.get('n1', 0))
     b = float(request.GET.get('n2', 0))
     total = a + b
     if total.is_integer():
         total = int(total)
-    return JsonResponse({"sum": total})
+    return HttpResponse(f"<p>{total}</p>")
 
 # ---------------------------------------------------------------------------
 # HW4  — user creation
